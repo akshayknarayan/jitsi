@@ -1,12 +1,11 @@
 publicURL: https://jitsi.faults.quest
+tz: UTC
 websockets:
   colibri:
     enabled: true
   xmpp:
     enabled: true
 jvb:
-  service:
-    type: NodePort
   # This will expose JVB to the world using hostPort feature,
   # so you won't need to come up with weird UDP proxying schemes:
   useHostPort: true
@@ -19,6 +18,14 @@ jvb:
 web:
   ingress:
     enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+      nginx.ingress.kubernetes.io/cors-allow-headers: Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-CSRFToken,X-CustomHeader,X-Requested-With
+      nginx.ingress.kubernetes.io/cors-allow-methods: GET, POST, PUT, PATCH, DELETE, OPTIONS
+      nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/server-snippet: |-
+        add_header X-Robots-Tag "noindex, nofollow, nosnippet, noarchive";
     hosts:
     - host: jitsi.faults.quest
       paths: ['/']
@@ -26,5 +33,3 @@ web:
       - secretName: "jitsi-key-pair"
         hosts:
           - jitsi.faults.quest
-xmpp:
-  domain: jitsi.faults.quest
