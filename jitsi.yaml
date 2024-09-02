@@ -13,7 +13,7 @@ jvb:
   # to hostPorts < 32000
   UDPPort: 10000
   publicIPs:
-    - 34.135.106.180
+    - 128.32.37.64
   stunServers: "meet-jit-si-turnrelay.jitsi.net:443,stun1.l.google.com:19302,stun2.l.google.com:19302,stun3.l.google.com:19302,stun4.l.google.com:19302"
 web:
   ingress:

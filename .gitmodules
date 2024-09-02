@@ -1,0 +1,3 @@
+[submodule "kubeinvaders"]
+	path = kubeinvaders
+	url = https://github.com/akshayknarayan/kubeinvaders.git

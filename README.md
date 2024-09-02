@@ -20,3 +20,6 @@ First, the self-signed TLS cert setup. We need an "Issuer", a "ClusterIssuer", a
 Now we install the jitsi service using helm:
 - `helm repo add jitsi https://jitsi-contrib.github.io/jitsi-helm/`
 - `helm install <name> jitsi/jitsi-meet -f jitsi.yaml`
+
+Starting kubeinvaders for crash injections:
+- `helm install -n kubeinvaders kubeinvaders ./kubeinvaders/helm-charts/kubeinvaders --set ingress.enabled=false --set route_host=localhost:8080 --set config.insecure='"true"' --set deployment.image.tag="v1.9.6" --set-string config.target_namespace="jitsi\,default"`
